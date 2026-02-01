@@ -6,14 +6,13 @@ def get_game_name(steam_path, app_id):
     libraries = get_steam_libraries(steam_path)
     for library in libraries:
         app_manifest = library / "steamapps" / f"appmanifest_{app_id}.acf"
-        if not app_manifest.exists():
-            return "Unknown game"
-        with open(app_manifest, "r", encoding="utf-8") as f:
-            for i in f:
-                if '"name"' in i:
-                    return i.split('"')[3]
+        if app_manifest.exists():
+            with open(app_manifest, "r", encoding="utf-8") as f:
+                for i in f:
+                    if '"name"' in i:
+                        return i.split('"')[3]
 
-        return "Unknown game"
+    return "Unknown game"
 
 
 def get_steam_libraries(steam_path):
