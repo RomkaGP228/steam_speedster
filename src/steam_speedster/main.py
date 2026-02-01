@@ -15,11 +15,13 @@ def main():
             lines, position = read_new_lines(content_log, 0)
             rate = parse_rate(lines)
             app_id = parse_app_id(lines)
-            status = parse_status(lines)
+            status = parse_status(lines, app_id)
             if app_id:
                 game_name = get_game_name(steam_path, app_id)
+                status = parse_status(lines, app_id)
             else:
                 game_name = "Unknown game"
+                status = "Unknown status"
             print(f"Minute: {i + 1}/5 | game: {game_name} | status: {status} | rate: {rate}")
             time.sleep(60)
     except KeyboardInterrupt:

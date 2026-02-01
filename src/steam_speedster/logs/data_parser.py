@@ -30,18 +30,19 @@ def parse_app_id(lines: list[str]):
     return None
 
 
-def parse_status(lines: list[str]):
+def parse_status(lines: list[str], app_id: str):
     """Функция для парсинга статуса последнего приложения
             Args:
                 lines: list[str]
+                app_id: str
             Returns:
                 str
         """
     for line in reversed(lines):
-        if ("AppID" in line) and ("changed" in line) and ("Suspended" in line):
+        if ("AppID" in line) and ("changed" in line) and ("Suspended" in line) and (app_id in line):
             return "Paused"
-        elif ("AppID" in line) and ("changed" in line) and ("Downloading" in line):
+        elif ("AppID" in line) and ("changed" in line) and ("Downloading" in line) and (app_id in line):
             return "Downloading"
-        elif ("AppID" in line) and ("changed" in line) and ("Fully Installed" in line):
+        elif ("AppID" in line) and ("changed" in line) and ("Fully Installed" in line) and (app_id in line):
             return "Downloaded"
     return "Downloading"
