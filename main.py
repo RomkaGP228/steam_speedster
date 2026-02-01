@@ -2,6 +2,8 @@ import time
 from steam_path import get_windows_steam_path
 from data_parser import parse_app_id, parse_rate, parse_status
 from game_name import get_game_name
+
+
 def read_new_lines(file_path, last_position):
     with open(file_path, "r", encoding="utf-8") as f:
         f.seek(last_position)
@@ -10,9 +12,10 @@ def read_new_lines(file_path, last_position):
 
     return lines, new_position
 
+
 def main():
     steam_path = get_windows_steam_path()
-    content_log = steam_path / "logs" / "content_log.txt"
+    content_log = f"{steam_path}/logs/content_log.txt"
     for i in range(5):
         lines, position = read_new_lines(content_log, 0)
         rate = parse_rate(lines)
@@ -26,11 +29,5 @@ def main():
         time.sleep(60)
 
 
-
-
-
-
-
 if __name__ == '__main__':
-    pass
-
+    main()

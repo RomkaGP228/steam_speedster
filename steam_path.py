@@ -1,5 +1,6 @@
 import winreg
 
+
 def get_windows_steam_path():
     try:
         main_path = r"Software\Valve\Steam"
@@ -13,7 +14,3 @@ def get_windows_steam_path():
     except Exception as e:
         print(f"An error while reading: {e}")
         return None
-
-steam_location = get_windows_steam_path()
-if steam_location:
-    print(f"Steam установлен в: {steam_location}")
