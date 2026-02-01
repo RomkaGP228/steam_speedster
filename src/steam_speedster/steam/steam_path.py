@@ -1,7 +1,16 @@
 import winreg
+from pathlib import Path
 
 
-def get_windows_steam_path():
+def get_windows_steam_path() -> str | Path | None:
+    """Функция для получения главного пути к приложению STEAM.
+
+        :arg:
+            -
+        :returns:
+
+        str | path | None: steam path
+    """
     try:
         main_path = r"Software\Valve\Steam"
         hkey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, main_path)

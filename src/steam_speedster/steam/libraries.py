@@ -1,7 +1,15 @@
 from pathlib import Path
 
 
-def get_steam_libraries(steam_path):
+def get_steam_libraries(steam_path: Path | str) -> list:
+    """Функция для получения всех директорий с играми и файлами STEAM
+
+        Args:
+            steam_path: Path, str
+
+        Returns:
+            libraries: list
+    """
     libraries = list()
     steam_path = Path(steam_path)
     libraries.append(steam_path)

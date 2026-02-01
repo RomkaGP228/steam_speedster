@@ -1,7 +1,13 @@
 import re
 
 
-def parse_rate(lines):
+def parse_rate(lines: list[str]):
+    """Функция для парсинга нынешней скорости загрузки из файла content_log
+        Args:
+            lines: list[str]
+        Returns:
+            str
+    """
     rate = None
     for line in reversed(lines):
         if "Current download rate:" in line:
@@ -10,7 +16,13 @@ def parse_rate(lines):
     return rate
 
 
-def parse_app_id(lines):
+def parse_app_id(lines: list[str]):
+    """Функция для парсинга id приложения, ближайшего в логах
+        Args:
+            lines: list[str]
+        Returns:
+            str
+    """
     for line in reversed(lines):
         match = re.search(r"\bAppID\s+(\d+)\b", line)
         if match:
@@ -18,7 +30,13 @@ def parse_app_id(lines):
     return None
 
 
-def parse_status(lines):
+def parse_status(lines: list[str]):
+    """Функция для парсинга статуса последнего приложения
+            Args:
+                lines: list[str]
+            Returns:
+                str
+        """
     for line in reversed(lines):
         if ("AppID" in line) and ("changed" in line) and ("Suspended" in line):
             return "Paused"

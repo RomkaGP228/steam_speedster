@@ -1,17 +1,10 @@
 import time
+from pathlib import Path
+
 from src.steam_speedster.steam.steam_path import get_windows_steam_path
 from src.steam_speedster.logs.data_parser import parse_app_id, parse_rate, parse_status
 from src.steam_speedster.steam.name_reader import get_game_name
-from pathlib import Path
-
-
-def read_new_lines(file_path, last_position):
-    with open(file_path, "r", encoding="utf-8") as f:
-        f.seek(last_position)
-        lines = f.readlines()
-        new_position = f.tell()
-
-    return lines, new_position
+from src.steam_speedster.logs.reader import read_new_lines
 
 
 def main():
